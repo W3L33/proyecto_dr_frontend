@@ -1,0 +1,500 @@
+/* ===== BODY ===== */
+body{
+  margin: 0;
+  padding-top: 80px; /* espacio para la barra fija */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== TOP BAR ===== */
+/* ===== TOP BAR DEGRADADO ===== */
+#topBar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 12px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  color: #fff;
+  overflow: hidden; /* necesario para ::before */
+}
+
+#topBar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, #2d89ef, #30cfcf);
+  z-index: -1;
+  filter: blur(8px);
+}
+
+
+/* ===== BOTONES CRISTAL SOBRIOS ===== */
+button{
+  border: none;
+  padding: 10px 18px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+button:hover{
+  background: rgba(255,255,255,0.38);
+}
+
+/* ===== MODAL OVERLAY ===== */
+.modal{
+  display:none;
+  position:fixed;
+  z-index:2000;
+  left:0;
+  top:0;
+  width:100px;
+  height:100%;
+
+  background: rgba(0,0,0,0.65);
+
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===== MODAL CONTENT (2/3 tamaño anterior) ===== */
+.modal-content{
+  width: 50%;              /* antes 360px aprox → 2/3 */
+  padding: 26px;
+  max-width: 300px;  
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border-radius: 12px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+
+  animation: aparecer 0.25s ease;
+  text-align: center;
+}
+
+/* ===== FORM DEL LOGIN ===== */
+.modal-content form{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== INPUTS PROPORCIONALES (no redondos) ===== */
+.modal-content input{
+  width: 100%;
+  padding: 10px 12px;
+
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+  box-sizing: border-box;
+}
+
+/* ===== BOTONES DEL LOGIN AL ANCHO DEL MODAL ===== */
+.modal-content button{
+  width: 100%;
+}
+
+/* ===== ANIMACIÓN ===== */
+@keyframes aparecer{
+  from{
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== MODAL CREAR USUARIO ===== */
+#crearUsuarioModal .modal-content {
+  width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* apila verticalmente */
+  gap: 10px; /* espacio entre inputs y botones */
+  background-color: #fff;
+  border-radius: 8px;
+  position: relative;
+}
+
+#crearUsuarioModal input,
+#crearUsuarioModal select,
+#crearUsuarioModal button {
+  padding: 8px;
+  font-size: 14px;
+}
+
+#crearUsuarioModal button {
+  cursor: pointer;
+}
+.lista-facturas {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.fila-factura {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+    font-size: 14px;
+}
+
+.fila-factura span {
+    min-width: 140px;
+    font-weight: 500;
+}
+
+.fila-factura .acciones {
+    margin-left: auto; /* Empuja los botones al final */
+    display: flex;
+    gap: 8px;
+}
+
+.fila-factura a {
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: #2d89ef;
+    color: white;
+    font-size: 13px;
+}
+
+.fila-factura button {
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: #d9534f;
+    color: white;
+    font-size: 13px;
+}
+
+
+
+/* ===== FILAS DE FACTURAS ===== */
+#todasFacturasModal #todasFacturas .fila-factura {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #f9f9f9;
+    font-size: 14px;
+    width: 100%;        /* ocupa todo el ancho disponible */
+}
+
+/* ===== ACCIONES (botones PDF, XML, ELIMINAR) ===== */
+#todasFacturasModal #todasFacturas .fila-factura .acciones {
+    margin-left: auto;   /* empuja los botones al final */
+    display: flex;
+    gap: 8px;
+}
+
+#todasFacturasModal #todasFacturas .fila-factura .acciones a,
+#todasFacturasModal #todasFacturas .fila-factura .acciones button {
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+.fila-factura button.enviar-btn {
+    background: #5cb85c; /* verde */
+}
+.modal {
+  display: none;               /* oculto por defecto */
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;        /* no clickeable mientras invisible */
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;               /* activamos display al mostrar */
+  opacity: 1;
+  pointer-events: auto;        /* clickeable */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+
+/* Botones específicos */
+#todasFacturasModal .fila-factura .acciones a.pdf { background: #2d89ef; }        /* azul PDF */
+#todasFacturasModal .fila-factura .acciones a.xml { background: #5cb85c; }        /* verde XML */
+#todasFacturasModal .fila-factura .acciones button.eliminar { background: #d9534f; } /* rojo eliminar */
+
+/* Ocultar los inputs reales */
+#uploadForm input[type="file"] {
+  display: none;
+}
+
+/* Leyenda estilizada como botón grande */
+.file-label {
+  display: block;
+  padding: 30px 0;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #fff;
+  background-color: #8990a2; /* Antes azul */
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.file-label:hover {
+  background-color: #666f88; /* Antes azul oscuro */
+}
+
+
+/* Cuando se selecciona archivo, el contenedor cambia a verde */
+.file-select.selected .file-label {
+  background-color: #28a745; /* verde */
+}
+.file-container {
+  border: 2px dashed #999;
+  padding: 30px;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.file-container input {
+  display: none; /* oculta el input real */
+}
+
+.file-container.selected {
+  background-color: #4caf50;
+  color: white;
+}
+
+
+
+#topBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+  background: #8990a2;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  gap: 10px;
+}
+#userInfo {
+  margin-left: auto;       /* empuja el span a la derecha */
+  display: flex;
+  align-items: center;
+  gap: 10px;               /* espacio entre texto y botón */
+}
+
+#userInfo button {
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+ margin-right: 40px;
+}
+
+#userInfo button:hover {
+  background: rgba(255,255,255,0.38);
+}
+#btnLogin {
+  margin-left: auto;        /* empuja el botón a la derecha */
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 8px 18px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+ margin-right: 40px;
+}
+
+#btnLogin:hover {
+  background: rgba(255,255,255,0.38);
+}
+
+
+/* Reducir ancho solo del modal de búsqueda */
+#buscarModal .modal-content {
+  width: 50%;        /* mitad del ancho del modal general */
+  max-width: 300px;  /* evita que sea demasiado grande en pantallas grandes */
+  padding: 20px;
+  text-align: center;
+}
+
+
+:root {
+  --bg-dark: #2c5e7e;      /* Azul profundo */
+  --bg-light: #a3d2d5;     /* Turquesa suave poco brillante */
+  --accent-white: rgba(255, 255, 255, 0.2);
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.medical-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-dark) 100%);
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Las ondas abstractas blancas */
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, var(--accent-white) 0%, transparent 70%);
+  filter: blur(50px);
+  transform: rotate(-10deg);
+  opacity: 0.5;
+}
+
+/* Hexágonos minimalistas */
+.hex-container {
+  position: absolute;
+  top: 30%;
+  left: 20%;
+}
+
+.hex {
+  width: 50px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin: 10px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: inline-block;
+}
+
+/* Cruz médica minimalista */
+.cross {
+  position: absolute;
+  right: 15%;
+  top: 20%;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  clip-path: polygon(35% 0%, 65% 0%, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0% 65%, 0% 35%, 35% 35%);
+}
+#botonesFlotantes {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;             /* más espacio entre botones */
+  
+  width: 400px;           /* antes 200px, ahora el doble */
+  height: auto;           /* auto ajusta según contenido */
+  
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(12px);
+  padding: 24px 40px;     /* antes 12px 20px, ahora doble */
+  border-radius: 16px;    /* un poco más grande */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  z-index: 2000;
+}
+
+#botonesFlotantes button {
+  min-width: 280px;       /* antes 140px, ahora doble */
+  padding: 20px;          /* antes 10px, ahora doble */
+  border-radius: 12px;    /* un poco más redondeado */
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(8px);
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2em;       /* texto más grande */
+  transition: background 0.2s ease;
+}
+
+#botonesFlotantes button:hover {
+  background: rgba(255,255,255,0.38);
+}
+
+/* ===== FOOTER MINIMALISTA SOLO TEXTO ===== */
+#footbar {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  color: rgba(40, 40, 40, 0.7); /* gris oscuro semitransparente */
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: 500;
+  font-size: 0.9em;
+  
+  text-align: center;
+  z-index: 2000;
+}
+
+#footbar a {
+  color: rgba(40, 40, 40, 0.7);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#footbar a:hover {
+  color: rgba(0, 0, 0, 0.9); /* un poco más visible al hover */
+}
