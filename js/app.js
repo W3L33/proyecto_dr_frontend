@@ -1,5 +1,4 @@
 
-
 // ===== ELEMENTOS SUPERIORES =====
 const btnLogin = document.getElementById('btnLogin');
 const loginModal = document.getElementById('loginModal');
@@ -498,7 +497,7 @@ function abrirEnviarCorreo(pdf, xml){
 
 async function enviarCorreoBackend(correoDestino){
   try{
-    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviarCorreo',{
+    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviar-correo',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -574,6 +573,5 @@ document.addEventListener('mousemove', (e) => {
   document.querySelector('.cross').style.transform = 
     `translate(${-moveX}px, ${-moveY}px)`;
 });
-
 
 
