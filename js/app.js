@@ -497,7 +497,7 @@ function abrirEnviarCorreo(pdf, xml){
 
 async function enviarCorreoBackend(correoDestino){
   try{
-    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviar-correo',{
+    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviarCorreo',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -573,5 +573,6 @@ document.addEventListener('mousemove', (e) => {
   document.querySelector('.cross').style.transform = 
     `translate(${-moveX}px, ${-moveY}px)`;
 });
+
 
 
