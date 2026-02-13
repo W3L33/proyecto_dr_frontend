@@ -1,4 +1,5 @@
 
+
 // ===== ELEMENTOS SUPERIORES =====
 const btnLogin = document.getElementById('btnLogin');
 const loginModal = document.getElementById('loginModal');
@@ -155,7 +156,7 @@ loginForm.addEventListener('submit', async (e) => {
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  const res = await fetch('http://localhost:3000/login',{
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/login',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({username,password})
@@ -202,7 +203,7 @@ uploadForm.addEventListener('submit', async (e) => {
   formData.append('pdf', pdf);
   formData.append('xml', xml);
 
-  const res = await fetch('http://localhost:3000/subir',{
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/subir',{
     method:'POST',
     headers:{'Authorization':`Bearer ${token}`},
     body:formData
@@ -231,7 +232,7 @@ buscarForm.addEventListener('submit', async (e) => {
   resultadosDiv.classList.add('lista-facturas');
 
   try {
-    const res = await fetch(`http://localhost:3000/buscar/${dato2}`);
+    const res = await fetch(`https://proyecto-dr-backend.onrender.com/buscar/${dato2}`);
     const data = await res.json();
 
     resultadosDiv.innerHTML = '';
@@ -289,7 +290,7 @@ async function enviarCorreoBackend(correoDestino){
   console.log('Enviando correo con:', { pdf: pdfSeleccionado, xml: xmlSeleccionado, correo: correoDestino });
 
   try {
-    const res = await fetch('http://localhost:3000/enviar-correo', {
+    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviarCorreo', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -316,7 +317,7 @@ async function enviarCorreoBackend(correoDestino){
 
 // ===== FUNCIONES ADMIN =====
 async function cargarUsuarios(){
-  const res = await fetch('http://localhost:3000/usuarios', {
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/usuarios', {
     headers: {'Authorization': `Bearer ${token}`}
   });
   const data = await res.json();
@@ -340,7 +341,7 @@ async function cargarUsuarios(){
 
 // ===== FUNCIONES USUARIOS MODAL =====
 async function cargarUsuariosModal(){
-  const res = await fetch('http://localhost:3000/usuarios',{headers:{'Authorization':`Bearer ${token}`}});
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/usuarios',{headers:{'Authorization':`Bearer ${token}`}});
   const data = await res.json();
   listaUsuariosModal.innerHTML = data.map(u=>`
     <div style="border:1px solid #ccc; margin:5px; padding:5px;">
@@ -359,7 +360,7 @@ async function crearUsuarioModalFuncion(){
 
   if(!username || !password) return alert('Completa todos los campos');
 
-  const res = await fetch('http://localhost:3000/usuarios', {
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/usuarios', {
     method:'POST',
     headers:{
       'Content-Type':'application/json',
@@ -388,7 +389,7 @@ async function eliminarUsuario(id, callback){
   if(!confirm('¿Seguro que deseas eliminar este usuario?')) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/usuarios/${id}`, {
+    const res = await fetch(`https://proyecto-dr-backend.onrender.com/usuarios/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -414,7 +415,7 @@ async function cargarTodasFacturas(){
   if(!token) return alert('Debes iniciar sesión');
 
   try {
-    const res = await fetch('http://localhost:3000/facturas', {
+    const res = await fetch('https://proyecto-dr-backend.onrender.com/facturas', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     const data = await res.json();
@@ -452,7 +453,7 @@ async function eliminarFactura(id, callback){
   if(!confirm('¿Seguro que deseas eliminar esta factura?')) return;
 
   try {
-    const res = await fetch(`http://localhost:3000/facturas/${id}`, {
+    const res = await fetch(`https://proyecto-dr-backend.onrender.com/facturas/${id}`, {
       method: 'DELETE',
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -497,7 +498,7 @@ function abrirEnviarCorreo(pdf, xml){
 
 async function enviarCorreoBackend(correoDestino){
   try{
-    const res = await fetch('http://localhost:3000/enviar-correo',{
+    const res = await fetch('https://proyecto-dr-backend.onrender.com/enviarCorreo',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -513,6 +514,7 @@ async function enviarCorreoBackend(correoDestino){
     console.error(e);
     alert('Error al enviar correo');
   }
+
 }
 document.addEventListener('keydown', (e) => {
   if(e.key === 'Escape'){
@@ -572,3 +574,6 @@ document.addEventListener('mousemove', (e) => {
   document.querySelector('.cross').style.transform = 
     `translate(${-moveX}px, ${-moveY}px)`;
 });
+
+
+
