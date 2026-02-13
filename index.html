@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CONSULTA CFDI</title>
+  <link rel="stylesheet" href="css/estilos.css">
+<link rel="icon" type="image/png" href="assets/welee.png">
+</head>
+<body>
+<div class="medical-bg">
+  <div class="wave"></div>
+  <div class="hex-container">
+    <div class="hex"></div>
+    <div class="hex"></div>
+    <div class="hex"></div>
+  </div>
+  <div class="cross"></div>
+</div>
+  <!-- ===== BARRA SUPERIOR ===== -->
+  <div id="topBar">
+    <button id="btnLogin">Entrar</button>
+    <span id="userInfo" style="display:none;">
+      Bienvenido, <strong id="nombreUsuario"></strong>
+      <button onclick="logout()">Salir</button>
+    </span>
+  </div>
+
+  <hr>
+
+  <!-- ===== BOTONES PRINCIPALES ===== -->
+<!-- Ventana flotante de botones -->
+<div id="botonesFlotantes">
+  <button id="btnBuscar">Consulta</button>
+  <button id="btnSubir" style="display:none;">Subir</button>
+  <button id="btnCargarFacturas" style="display:none;">Todas las facturas</button>
+  <button id="btnCrearUsuario" style="display:none;">Crear Usuario</button>
+  <button id="btnUsuarios" style="display:none;">Ver Usuarios</button>
+</div>
+
+
+  <!-- ===== MODAL CREAR USUARIO ===== -->
+  <div id="crearUsuarioModal" class="modal">
+    <div class="modal-content">
+      <h2>Crear Usuario</h2>
+      <input type="text" id="newUser" placeholder="Usuario">
+      <input type="password" id="newPass" placeholder="Contraseña">
+      <select id="newRol">
+        <option value="user">User</option>
+        <option value="editor">Editor</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button id="btnCrearUsuarioModal">Crear</button>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL LISTA DE USUARIOS ===== -->
+  <div id="usuariosModal" class="modal">
+    <div class="modal-content" style="width: 400px; max-height: 70vh; overflow-y: auto;">
+      <h2>Usuarios</h2>
+      <div id="listaUsuariosModal"></div>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL BUSCAR ===== -->
+  <div id="buscarModal" class="modal">
+    <div class="modal-content">
+      <h2>Consulta tu factura</h2>
+      <form id="buscarForm">
+        <input type="text" id="dato2" placeholder="RFC" required>
+        <button type="submit">Ir</button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== MODAL RESULTADOS ===== -->
+  <div id="resultadosModal" class="modal">
+    <div class="modal-content" style="width: 620px;">
+      <h2>Resultados</h2>
+      <div id="resultados"></div>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL FACTURAS ===== -->
+  <div id="facturasModal" class="modal">
+    <div class="modal-content" style="width: 50%; max-height: 85vh; ">
+      <h2>Facturas del Sistema</h2>
+      <div id="listaFacturasModal"></div>
+
+    </div>
+  </div>
+
+  <!-- ===== MODAL SUBIR ARCHIVOS ===== -->
+<div id="subirModal" class="modal">
+  <div class="modal-content">
+    <h2>Subir Archivos</h2>
+    <form id="uploadForm">
+      <div class="file-select" id="pdf-container">
+        <input type="file" id="pdf" required accept="application/pdf">
+        <label for="pdf" class="file-label">PDF</label>
+      </div>
+
+      <div class="file-select" id="xml-container">
+        <input type="file" id="xml" required accept=".xml">
+        <label for="xml" class="file-label">XML</label>
+      </div>
+
+      <button type="submit">Subir</button>
+    </form>
+  </div>
+</div>
+
+
+  <!-- ===== PANEL ADMIN (SOLO ADMIN) ===== -->
+  <div id="adminPanel" style="display:none;">
+    <h1 id="adminTitle" style="display:none;"></h1>
+    <div id="listaFacturas"></div>
+  </div>
+
+  <!-- ===== MODAL LOGIN ===== -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <h2>Iniciar sesión</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+
+      </form>
+    </div>
+  </div>
+<footer id="footbar">
+  © 2026 By <a href="https://w3l33.github.io/" target="_blank">WeLee</a>
+</footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
