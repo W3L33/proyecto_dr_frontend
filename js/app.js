@@ -155,7 +155,7 @@ loginForm.addEventListener('submit', async (e) => {
   const username = document.getElementById('username').value.trim();
   const password = document.getElementById('password').value.trim();
 
-  const res = await fetch('https://proyecto-dr-backend.onrender.com',{
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/login',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({username,password})
@@ -202,7 +202,7 @@ uploadForm.addEventListener('submit', async (e) => {
   formData.append('pdf', pdf);
   formData.append('xml', xml);
 
-  const res = await fetch('https://proyecto-dr-backend.onrender.com',{
+  const res = await fetch('https://proyecto-dr-backend.onrender.com/subir',{
     method:'POST',
     headers:{'Authorization':`Bearer ${token}`},
     body:formData
@@ -573,3 +573,4 @@ document.addEventListener('mousemove', (e) => {
   document.querySelector('.cross').style.transform = 
     `translate(${-moveX}px, ${-moveY}px)`;
 });
+
